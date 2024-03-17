@@ -29,9 +29,13 @@ class TagEveryone {
         const items = [];
   
         members.forEach(({ id, admin }) => {
-          mentions.push(id);
-          items.push("@" + id.slice(0, 12) + (admin ? " 👑 " : ""));
-        });
+          if(id==key.participant && admin!=null){
+
+            members.forEach(({ id, admin }) => {
+              mentions.push(id);
+              items.push("@" + id.slice(0, 12) + (admin ? " 👑 " : ""));
+            })
+        
 
         for(let i=0;i<mentions.length;++i){
             console.log(mentions[i])
@@ -40,9 +44,11 @@ class TagEveryone {
         if (members.length < this.#membersLimit)
           this.#sendMessage(
             key.remoteJid,
-            { text: `[${this.#trigger}] ${items.join(", ")}`, mentions },
+            { text: `${items.join(" ")}`, mentions },
             { quoted: { key, message } }
           );
+          }
+        });
       } catch (err) {
         console.log("ERROR in TagEveryone:", err);
       }

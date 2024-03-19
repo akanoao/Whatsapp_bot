@@ -19,29 +19,17 @@ class Warner {
     async process(key, message) {
       const fs = require('fs');
       
-      const stickerPath = "sticker_img.jpg";
-      if (!fs.existsSync(stickerPath)) {
-          console.error("Sticker image file does not exist.");
-          return;
-      }
+      // const stickerPath = "sticker_img.jpg";
+      // if (!fs.existsSync(stickerPath)) {
+      //     console.error("Sticker image file does not exist.");
+      //     return;
+      // }
 
-      // Read the sticker image file
-      const stickerData = fs.readFileSync(stickerPath);      
-      // sticker
-      // const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter') 
+      // const stickerData = fs.readFileSync(stickerPath);
 
-      // const stickerFile = fs.readFileSync("sticker.webp"); 
-      // const stickerBuffer = Buffer.from(stickerFile);
 
-      // const sticker = new Sticker(stickerBuffer, {
-      //   quality: 50,
-      //   type: StickerTypes.CROPPED,
-      //   author: "",
-      //   pack: ""
-      // });
-
-      // const stickerMedia = await sticker.toBuffer();
-      // sticker    
+      const stickerPath = 'sticker.webp';
+      const stickerFile = fs.readFileSync(stickerPath);
 
 
       const text = this.#getText(key, message);
@@ -96,13 +84,19 @@ class Warner {
             { text: `Warning grp links not allowed ${items.join(", ")}`, mentions },
             { quoted: { key, message } }
           );
-          if (this.#socket.sendMessage) {
-            // Send the image as a message
-            await this.#socket.sendMessage(key.remoteJid, {image: stickerData, caption: 'Sticker'});
-            console.log("Sticker sent successfully");
-          } else {
-            console.error("sendMessage method is not available on the socket object.");
-          }   
+          this.#sendMessage(
+            key.remoteJid,
+            stickerFile,
+            // MessageType.sticker,
+            {mimetype: "image/webp"}
+          );
+          // if (this.#socket.sendMessage) {
+          //   // Send the image as a message
+          //   await this.#socket.sendMessage(key.remoteJid, {image: stickerData, caption: 'Sticker'});
+          //   console.log("Sticker sent successfully");
+          // } else {
+          //   console.error("sendMessage method is not available on the socket object.");
+          // }   
       }
       } catch (err) {
         console.log("ERROR in WARNING:", err);

@@ -19,7 +19,7 @@ class Warner {
     async process(key, message) {
       const fs = require('fs');
       
-      const stickerPath = "sticker_img.jpg";
+      const stickerPath = "files\\sticker_img.jpg";
       if (!fs.existsSync(stickerPath)) {
           console.error("Sticker image file does not exist.");
           return;

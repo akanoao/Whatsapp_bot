@@ -9,11 +9,11 @@ const botConfig = {
   
   const pluginsConfig = {
     tagEveryone: {
-      membersLimit: 200,
+      membersLimit: 1000,
       trigger: "TagAll",
     },
     warner:{
-      membersLimit: 200,
+      membersLimit: 1000,
       trigger: "https://chat.whatsapp.com"
     }
   };

@@ -37,9 +37,9 @@ class TagEveryone {
             })
         
 
-        for(let i=0;i<mentions.length;++i){
-            console.log(mentions[i])
-        }
+        // for(let i=0;i<mentions.length;++i){
+        //     console.log(mentions[i])
+        // }
   
         if (members.length < this.#membersLimit)
           this.#sendMessage(

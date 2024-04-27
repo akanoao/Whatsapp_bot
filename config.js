@@ -14,7 +14,7 @@ const botConfig = {
     },
     warner:{
       membersLimit: 1000,
-      trigger: "https://chat.whatsapp.com"
+      trigger: "chat.whatsapp"
     }
   };
   
